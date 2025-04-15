@@ -13,14 +13,13 @@ namespace MovieBookingSystem
         private string Duration;
         private string Genre;
 
-        public List<string> ShowTime;
         public Movie(string name, string movieId, string duration, string genre)
         {
             MovieName = name;
             MovieId = movieId;
             Duration = duration;
             Genre = genre;
-            ShowTime = new List<string>();
+
         }
 
 
@@ -31,13 +30,12 @@ namespace MovieBookingSystem
         {
             Console.WriteLine($"MovieName: {MovieName} - Duration: {Duration} - Genre: {Genre} ");
         }
-        public void GetAvailbleShowtime()
-        {
-            foreach (var show in ShowTime)
-            {
-                Console.WriteLine($"shows: {show}");
-            }
-        }
+       
+        // check the movie availble in any other theatre
+        //public void IsAailble()
+        //{
+
+        //}
     }
 
 }
