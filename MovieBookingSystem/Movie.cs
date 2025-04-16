@@ -19,23 +19,30 @@ namespace MovieBookingSystem
             MovieId = movieId;
             Duration = duration;
             Genre = genre;
-
         }
 
 
-        public String GetMovieName() => MovieName;
+        public string GetMovieName() => MovieName;
         public string GetMovieId() => MovieId;
 
         public void DisplayMovieInfo()
         {
             Console.WriteLine($"MovieName: {MovieName} - Duration: {Duration} - Genre: {Genre} ");
         }
-       
-        // check the movie availble in any other theatre
-        //public void IsAailble()
-        //{
 
-        //}
+        public override bool Equals(object? obj)
+        {
+            if (obj is Movie other)
+            {
+                return MovieId == other.MovieId;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return MovieId.GetHashCode();
+        }
     }
 
 }
