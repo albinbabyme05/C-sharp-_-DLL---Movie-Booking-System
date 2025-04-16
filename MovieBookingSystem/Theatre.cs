@@ -10,17 +10,17 @@ namespace MovieBookingSystem
     {
         public string TheatreName { get; set; }
         public string Location { get; set; }
-        public List<Movie> AvailbleMovies;
+        public List<Movie> AvailableMovies;
         public Dictionary<Movie, List<string>> ShowTimes;
-        public Dictionary<Movie, Dictionary<string, int>> SeatAvailbilty;
+        public Dictionary<Movie, Dictionary<string, int>> SeatAvailabilty;
 
         public Theatre(string theatreName, string location)
         {
             TheatreName = theatreName;
             Location = location;
             ShowTimes = new Dictionary<Movie, List<string>>();
-            AvailbleMovies = new List<Movie>();
-            SeatAvailbilty = new Dictionary<Movie, Dictionary<string, int>>();
+            AvailableMovies = new List<Movie>();
+            SeatAvailabilty = new Dictionary<Movie, Dictionary<string, int>>();
             
         }
 
@@ -32,15 +32,15 @@ namespace MovieBookingSystem
             }
             else
             {
-                return new List<string>();
+                return new List<string>(); //return a empty list -  useful because it ensures that the method always returns a valid List<string>
             }
         }
 
-        public int CheckSeatAvailbilty(Movie movie, String timing)
+        public int CheckSeatAvailbilty(Movie movie, string timing)
         {
-            if(SeatAvailbilty.ContainsKey(movie) && SeatAvailbilty[movie].ContainsKey(timing))
+            if(SeatAvailabilty.ContainsKey(movie) && SeatAvailabilty[movie].ContainsKey(timing))
             {
-                return SeatAvailbilty[movie][timing];
+                return SeatAvailabilty[movie][timing];
             }
             else
             {
@@ -50,11 +50,11 @@ namespace MovieBookingSystem
 
         public void BookSeat(Movie movie, string timing, int numberOfSeat)
         {
-            if(SeatAvailbilty.ContainsKey(movie) && SeatAvailbilty[movie].ContainsKey(timing))
+            if(SeatAvailabilty.ContainsKey(movie) && SeatAvailabilty[movie].ContainsKey(timing))
             {
-                if (SeatAvailbilty[movie][timing] >= numberOfSeat)
+                if (SeatAvailabilty[movie][timing] >= numberOfSeat)
                 {
-                    SeatAvailbilty[movie][timing] -= numberOfSeat;
+                    SeatAvailabilty[movie][timing] -= numberOfSeat;
                     Console.WriteLine($"Successfully booked {numberOfSeat} seat(s) for {movie.GetMovieName()} at {timing}.");
                     return;
                 }
@@ -71,7 +71,7 @@ namespace MovieBookingSystem
 
         public void AddMovie(Movie movie)
         {
-            AvailbleMovies.Add(movie);
+            AvailableMovies.Add(movie);
         }
 
         public void AddShowTime(Movie movie, string timing)
@@ -86,27 +86,32 @@ namespace MovieBookingSystem
             }
         }
 
+        //public void SetSeatAvailbilty(Movie movie, string timing, int seats)
+        //{
+        //    if (!SeatAvailabilty.ContainsKey(movie))
+        //    {
+        //        SeatAvailabilty[movie] = new Dictionary<string, int>();//Adds a new entry for the movie with an empty inner dictionary (timing ➝ seats).
+        //    }
+
+        //    SeatAvailabilty[movie][timing] = seats;
+        //}
         public void SetSeatAvailbilty(Movie movie, string timing, int seats)
         {
-            if (SeatAvailbilty.ContainsKey(movie))
+            if (SeatAvailabilty.ContainsKey(movie))
             {
-                if (SeatAvailbilty[movie].ContainsKey(timing))
-                {
-                    SeatAvailbilty[movie][timing]  = seats;
-                }
-                else
-                {
-                    // If the timing is not found, add it to the dictionary.
-                    SeatAvailbilty[movie].Add(timing, seats);
-                }
+                SeatAvailabilty[movie][timing] = seats;
             }
-            
+            else
+            {
+                SeatAvailabilty[movie] = new Dictionary<string, int>() { { timing, seats } };
+            }
         }
-
-
-
-
-
-
     }
+
+
+
+
+
+
 }
+
