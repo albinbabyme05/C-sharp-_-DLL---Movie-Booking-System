@@ -17,7 +17,11 @@ OOP Concepts Used:
 - Encapsulation (private fields, controlled access)
 - Inheritance ready structure (can extend to Guest/RegisteredUser)
 - Polymorphism (via Equals & GetHashCode for Dictionary keys)
+
+  
 ![movieBooking output](https://github.com/user-attachments/assets/042c702a-46b6-4e44-ae04-f065f57c0296)
+
+
 Project Structure:
 ------------------
 - Movie.cs         --> Represents a movie (name, ID, genre, duration)
