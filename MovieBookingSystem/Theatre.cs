@@ -36,6 +36,11 @@ namespace MovieBookingSystem
             }
         }
 
+        public List<Movie> GetAvailableMovies()
+        {
+              return new List<Movie>(AvailableMovies);
+        }
+
         public int CheckSeatAvailbilty(Movie movie, string timing)
         {
             if(SeatAvailabilty.ContainsKey(movie) && SeatAvailabilty[movie].ContainsKey(timing))
@@ -48,7 +53,7 @@ namespace MovieBookingSystem
             }
         }
 
-        public void BookSeat(Movie movie, string timing, int numberOfSeat)
+        public bool BookSeat(Movie movie, string timing, int numberOfSeat)
         {
             if(SeatAvailabilty.ContainsKey(movie) && SeatAvailabilty[movie].ContainsKey(timing))
             {
@@ -56,17 +61,11 @@ namespace MovieBookingSystem
                 {
                     SeatAvailabilty[movie][timing] -= numberOfSeat;
                     Console.WriteLine($"Successfully booked {numberOfSeat} seat(s) for {movie.GetMovieName()} at {timing}.");
-                    return;
+                    return true;
                 }
-                else
-                {
-                    Console.WriteLine("Not enough seats available for this booking.");
-                }
+               
             }
-            else
-            {
-                Console.WriteLine("Invalid Movie, Try Again.");
-            }
+            return false; 
         }
 
         public void AddMovie(Movie movie)
