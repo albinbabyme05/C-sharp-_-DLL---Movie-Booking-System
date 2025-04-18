@@ -9,7 +9,7 @@ namespace MovieBookingSystem
     public class RegisteredUser : User
     {
         private string PhoneNumber { get; set; }
-        private List<string> Booking;
+        private List<string> Booking = new List<string>();
 
         public RegisteredUser(string userName, string email, string phoneNumber):base(userName, email)
         {
@@ -17,7 +17,7 @@ namespace MovieBookingSystem
             Booking = new List<string>();
         }
 
-       
+        public string GetPhoneNumber() => PhoneNumber;
 
         public override string BookTicket(Theatre theatre, Movie movie, string timing, int seats)
         {
@@ -37,6 +37,7 @@ namespace MovieBookingSystem
             if (success)
             {
                 string bookingDetails = $"{movie.GetMovieName()} - Theatre:{theatre.TheatreName} - Time: {timing} - seats: {seats}";
+                Booking.Add(bookingDetails);
                 return "Booking Successful!";
             }
             else
@@ -72,5 +73,18 @@ namespace MovieBookingSystem
             return result;
 
         }
+
+        public void ViewBookingHistroy() 
+        {
+            Console.WriteLine("============**");
+            foreach (var item in Booking)
+            {
+                Console.WriteLine($"{item}");
+                
+            }
+            Console.WriteLine("============**");
+        }
+
+
     }
 }
