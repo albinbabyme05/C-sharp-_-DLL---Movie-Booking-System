@@ -25,8 +25,12 @@ A simple movie ticket booking system built using **Object-Oriented Programming i
 ## 📌 Note
 - This is a **console-based simulation**  
 - No database or UI is implemented  
-- All data is stored and managed in memory  
+- All data is stored and managed in memory
+
+## ⚙️ Test and Calling methods
 ![1](https://github.com/user-attachments/assets/b799d71a-947d-4e37-969c-8c219b1850de)
 
 ![2](https://github.com/user-attachments/assets/b10d5a57-12e8-41c8-8198-45df891d5140)
+
+## 🔳 Output
 ![dd](https://github.com/user-attachments/assets/a3525f28-0c1b-4e2d-ad4d-76f9936398ff)
