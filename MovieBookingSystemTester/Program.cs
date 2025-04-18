@@ -92,6 +92,10 @@ class Program
 
         Console.WriteLine($"Remaining Seats for {movie1.GetMovieName()}   {t2.CheckSeatAvailbilty(movie1, "3pm")}");
         Console.WriteLine($"Remaining Seats for {movie1.GetMovieName()}   {t1.CheckSeatAvailbilty(movie1, "9pm")}");
+
+        user1.ViewBookingHistroy();
+
+
     }
 }
 
